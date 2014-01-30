@@ -12,9 +12,13 @@ public class PaddleController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float move = Input.GetAxis ("Horizontal");
+	
+	}
 
-		rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y);
+	void FixedUpdate () {
+			float move = Input.GetAxis ("Horizontal");
+		
+			rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y);
 	}
 }
 		                      
