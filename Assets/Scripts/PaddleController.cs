@@ -1,24 +1,45 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// PaddleController.cs
+/// 1/30/2014
+/// Tom "Tribeman" Phillips
+/// [Fates United]
+/// 
+/// Class for the player to be able to control the paddle.
+/// This was made for my UIC CS 426 - Video Game Design course.
+/// 
+/// Get player input and move paddle.
+/// Paddle is restricted to X-axis movement and does not change Y-position.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
-public class PaddleController : MonoBehaviour {
-
-	float maxSpeed = 300;
+public class PaddleController : MonoBehaviour 
+{
+	public float maxSpeed = 500; // Max speed of the paddle
+	public float speed = 300; // Default speed of the paddle
 
 	// Use this for initialization
-	void Start () {
-	
-	}
+	void Start() 
+	{
+		maxSpeed = 500; 
+		speed = 300; 
+	} // end Start()
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update() 
+	{
+		transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
+		transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z);
+	} // end Update()
 
-	void FixedUpdate () {
-			float move = Input.GetAxis ("Horizontal");
-		
-			rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y);
-	}
-}
+	// Move the player
+	void FixedUpdate() 
+	{
+		float move = Input.GetAxis ("Horizontal");
+
+		rigidbody2D.velocity = new Vector2(move * speed, 0);
+	} // end FixedUpdate()
+
+} // end PaddleController
 		                      
