@@ -1,10 +1,10 @@
 ﻿/// <summary>
-/// DeathFieldScript.cs
+/// PowerUpScript.cs
 /// 1/31/2014
 /// Tom "Tribeman" Phillips
 /// [Fates United]
 /// 
-/// Class to control when the ball dies
+/// Class to control power ups
 /// This was made for my UIC CS 426 - Video Game Design course.
 /// 
 /// </summary>
@@ -12,12 +12,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class DeathFieldScript : MonoBehaviour 
+public class PowerUpScript : MonoBehaviour 
 {
 	// Use this for initialization
 	void Start() 
 	{
-
+		
 	} // end Start()
 	
 	// Update is called once per frame
@@ -26,15 +26,10 @@ public class DeathFieldScript : MonoBehaviour
 		
 	} // end Update()
 
-	// Detects Collisions AKA Triggers
-	void OnTriggerEnter(Collider otherCol)
+	// Detects Collisions
+	void OnCollisionEnter(Collision col)
 	{
-		BallScript ballScript = otherCol.GetComponent<BallScript>();
-
-		if (ballScript)
-		{
-			ballScript.Die();
-		}
-	} // end OnTriggerEnter(Collider)
+		Destroy(gameObject);
+	} // end OnCollisionEnter(Collision)
 	
-} // end DeathFieldScript
+} // end PowerUpScript

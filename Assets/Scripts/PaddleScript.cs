@@ -18,22 +18,35 @@ public class PaddleScript : MonoBehaviour
 	float speed = 20f;
 	public GameObject ballPrefab;
 	GameObject attachBall = null;
-	int lives = 4;
+	int lives = 3;
 	GUIText gui_lives;
 	int score = 0;
+	public GUISkin scoreSkin;
 
 	// Use this for initialization
 	void Start() 
 	{
-		gui_lives = GameObject.Find ("GUI_Lives").GetComponent<GUIText>();
-		Spawn();
+		DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad (GameObject.Find("GUI_Lives"));
+
+		gui_lives = GameObject.Find("GUI_Lives").GetComponent<GUIText>();
+		gui_lives.text = "LIVES: " + lives;
 	} // end Start()
 	
 	// Update is called once per frame
 	void Update() 
 	{
 		// Move left and right
-		transform.Translate(20f * Time.deltaTime * Input.GetAxis("Horizontal"), 0, 0);
+		transform.Translate(speed * Time.deltaTime * Input.GetAxis("Horizontal"), 0, 0);
+
+		if (transform.position.x > 8)
+		{
+			transform.position = new Vector3(8f, transform.position.y, transform.position.z);
+		}
+		else if (transform.position.x < -8)
+		{
+			transform.position = new Vector3(-8f, transform.position.y, transform.position.z);
+		}
 
 		// Fire the ball
 		if (attachBall)
@@ -82,15 +95,41 @@ public class PaddleScript : MonoBehaviour
 		}
 
 		attachBall = ((GameObject)Instantiate (ballPrefab, transform.position + new Vector3 (0, .75f, 0), Quaternion.identity));
-
-		lives--;
-
-		gui_lives.text = "LIVES: " + lives;
 	} // end Spawn()
 
 	void OnGUI()
 	{
-		GUI.Label (new Rect (0, 10, 100, 100), "awoefijawfeoiawefoijawefoijawefiowjw");
+		GUI.skin = scoreSkin;
+		GUI.Label (new Rect (0, 10, 300, 100), "SCORE: " + score);
 	} // end OnGUI()
-	
+
+	// Add to the player's score
+	public void AddScore(int val)
+	{
+		score += val;
+	} // end AddScore(int)
+
+	// Lose a life when the ball hits the bottom
+	public void LoseLife()
+	{
+		lives--;
+		gui_lives.text = "LIVES: " + lives;
+		if (lives > 0)
+		{
+			Spawn();
+		}
+		else 
+		{
+			// GAME OVER
+			Destroy(gameObject);
+			Application.LoadLevel("GameOver");
+		}
+	} // end LoseLife()
+
+	// Checks for level load
+	public void OnLevelWasLoaded(int level)
+	{
+		Spawn();
+	} // end OnLevelWasLoaded(int)
+
 } // end PaddleScript

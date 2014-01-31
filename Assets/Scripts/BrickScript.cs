@@ -1,6 +1,6 @@
-﻿/// <summary>
+/// <summary>
 /// BrickScript.cs
-/// 1/30/2014
+/// 1/31/2014
 /// Tom "Tribeman" Phillips
 /// [Fates United]
 /// 
@@ -14,10 +14,15 @@ using System.Collections;
 
 public class BrickScript : MonoBehaviour 
 {
+	// Fields
+	public int pointVal = 100;
+	static int numBricks = 0;
+	public int hitPoints = 1;
+
 	// Use this for initialization
 	void Start() 
 	{
-
+		numBricks++;
 	} // end Start()
 	
 	// Update is called once per frame
@@ -26,8 +31,32 @@ public class BrickScript : MonoBehaviour
 		
 	} // end Update()
 
+	// Detects when collisions are made
 	void OnCollisionEnter(Collision col)
 	{
-		Destroy(gameObject);
+		hitPoints--;
+		if (hitPoints <= 0)
+		{
+			Die();
+		}
 	} // end OnCollisionEnter(Collision)
+
+	// Kills the brick
+	void Die()
+	{
+		Destroy(gameObject);
+
+		PaddleScript paddleScript = GameObject.Find("Paddle").GetComponent<PaddleScript>();
+		paddleScript.AddScore(pointVal);
+		
+		//GameObject[] bricks = GameObject.FindGameObjectsWithTag("Brick");
+		numBricks--;
+		//Debug.Log (numBricks);
+		if (numBricks <= 0)
+		{
+			// Load new level
+			Application.LoadLevel("Level2");
+		}
+	} // end Die()
+
 } // end BrickScript

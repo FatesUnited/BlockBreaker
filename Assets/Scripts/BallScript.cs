@@ -14,6 +14,8 @@ using System.Collections;
 
 public class BallScript : MonoBehaviour 
 {
+	// Fields
+	float prevY = 0;
 	// Use this for initialization
 	void Start() 
 	{
@@ -23,7 +25,7 @@ public class BallScript : MonoBehaviour
 	// Update is called once per frame
 	void Update() 
 	{
-
+		//ballRigid.AddForce(300f * Input.GetAxis("Horizontal"), 300f, 0);
 	} // end Update()
 
 	public void Die()
@@ -32,7 +34,12 @@ public class BallScript : MonoBehaviour
 
 		GameObject paddleObject = GameObject.Find("Paddle");
 		PaddleScript paddleScript = paddleObject.GetComponent<PaddleScript>();
-		paddleScript.Spawn();
+		paddleScript.LoseLife();
+	}
+
+	void OnCollisionEnter(Collision col)
+	{
+		rigidbody.AddForce (300f, 300f, 0);
 	}
 
 } // end BallScript
