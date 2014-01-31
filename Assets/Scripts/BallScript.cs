@@ -26,7 +26,8 @@ public class BallScript : MonoBehaviour
 	// Update is called once per frame
 	void Update() 
 	{
-
+		if (Input.GetKeyDown (KeyCode.Escape))
+						this.Die ();
 		//ballRigid.AddForce(300f * Input.GetAxis("Horizontal"), 300f, 0);
 	} // end Update()
 
