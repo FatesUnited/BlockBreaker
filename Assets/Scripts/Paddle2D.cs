@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// PaddleController.cs
+/// Paddle2D.cs
 /// 1/30/2014
 /// Tom "Tribeman" Phillips
 /// [Fates United]
@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PaddleController : MonoBehaviour 
+public class Paddle2D : MonoBehaviour 
 {
 	public float maxSpeed = 500; // Max speed of the paddle
 	public float speed = 300; // Default speed of the paddle
@@ -47,5 +47,5 @@ public class PaddleController : MonoBehaviour
 		rigidbody2D.velocity = new Vector2(move * speed, 0);
 	} // end FixedUpdate()
 	
-} // end PaddleController
+} // end Paddle2D
 		                      

@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Ball.cs
+/// Ball2D.cs
 /// 1/30/2014
 /// Tom "Tribeman" Phillips
 /// [Fates United]
@@ -13,7 +13,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour 
+public class Ball2D : MonoBehaviour 
 {
 	public float minSpeed = 500; // Min speed of the ball
 	public float maxSpeed = 1000; // Max speed of the ball
@@ -48,4 +48,4 @@ public class Ball : MonoBehaviour
 	{
 
 	}
-} // end Ball
+} // end Ball2D
