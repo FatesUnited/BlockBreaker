@@ -9,7 +9,7 @@
 /// 
 /// 
 /// </summary>
-/// 
+
 using UnityEngine;
 using System.Collections;
 
@@ -19,6 +19,8 @@ public class Ball : MonoBehaviour
 	public float maxSpeed = 1000; // Max speed of the ball
 	public float speed = 750; // Default speed of the ball
 	public float curSpeed = 0; // Current speed of the ball
+	public float xPos = 1;
+	public float yPos = 10;
 	
 	// Use this for initialization
 	void Start() 
@@ -27,7 +29,7 @@ public class Ball : MonoBehaviour
 		maxSpeed = 1000; 
 		speed = 7500; 
 
-		rigidbody2D.AddForce(new Vector2(0, -speed));
+		rigidbody2D.AddForce(new Vector2(0, speed));
 	} // end Start()
 	
 	// Update is called once per frame
@@ -41,5 +43,9 @@ public class Ball : MonoBehaviour
 	{
 
 	} // end FixedUpdate()
-	
+
+	void OnCollisionDetection(Collision2D col)
+	{
+
+	}
 } // end Ball

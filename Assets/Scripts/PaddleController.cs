@@ -18,19 +18,25 @@ public class PaddleController : MonoBehaviour
 {
 	public float maxSpeed = 500; // Max speed of the paddle
 	public float speed = 300; // Default speed of the paddle
+	public float ypos = 5;
 
 	// Use this for initialization
 	void Start() 
 	{
 		maxSpeed = 500; 
 		speed = 300; 
+
+		this.ypos = this.transform.position.y;
 	} // end Start()
 	
 	// Update is called once per frame
 	void Update() 
 	{
-		transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
-		transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z);
+		this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
+
+		float xpos = this.transform.position.x;
+		
+		this.transform.position = new Vector3 (xpos, ypos, 0);
 	} // end Update()
 
 	// Move the player
@@ -40,6 +46,6 @@ public class PaddleController : MonoBehaviour
 
 		rigidbody2D.velocity = new Vector2(move * speed, 0);
 	} // end FixedUpdate()
-
+	
 } // end PaddleController
 		                      
