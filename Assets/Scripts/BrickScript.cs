@@ -55,7 +55,12 @@ public class BrickScript : MonoBehaviour
 		if (numBricks <= 0)
 		{
 			// Load new level
-			Application.LoadLevel("Level2");
+			if (Application.loadedLevelName == "Level1")
+				Application.LoadLevel("Level2");
+			if (Application.loadedLevelName == "Level2")
+				Application.LoadLevel("GameOver");
+			if (Application.loadedLevelName == "LevelPKMN")
+				Application.LoadLevel("GameOver");
 		}
 	} // end Die()
 

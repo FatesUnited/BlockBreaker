@@ -23,9 +23,9 @@ public class EndScript : MonoBehaviour
 	// Update is called once per frame
 	void Update() 
 	{
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetButtonDown("Fire1"))
 		{
-			Application.LoadLevel("Start");
+			Application.Quit();
 		}
 		//Debug.Log ("Button pressed: " + Input.GetButtonDown("Fire1"));
 	} // end Update()

@@ -47,7 +47,7 @@ public class BallScript : MonoBehaviour
 			{
 				float loc = col.gameObject.transform.position.y - contact.point.y;
 
-				this.rigidbody.AddForce(new Vector3(0, loc * bounciness, 0));
+				this.rigidbody.AddForce(new Vector3(0, loc * bounciness + 3, 0));
 			}
 		}
 	}
