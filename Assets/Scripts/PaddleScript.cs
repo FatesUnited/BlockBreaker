@@ -80,7 +80,7 @@ public class PaddleScript : MonoBehaviour
 			{
 				float loc = contact.point.x - transform.position.x;
 
-				contact.otherCollider.rigidbody.AddForce(300f * loc, 0, 0);
+				contact.otherCollider.rigidbody.AddForce(300f * loc, 500f * Mathf.Abs(loc) , 0);
 			}
 		}
 	} // end OnCollisionEnter(Collision)

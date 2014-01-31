@@ -15,7 +15,8 @@ using System.Collections;
 public class BallScript : MonoBehaviour 
 {
 	// Fields
-	float prevY = 0;
+	float bounciness = 10;
+
 	// Use this for initialization
 	void Start() 
 	{
@@ -25,6 +26,7 @@ public class BallScript : MonoBehaviour
 	// Update is called once per frame
 	void Update() 
 	{
+
 		//ballRigid.AddForce(300f * Input.GetAxis("Horizontal"), 300f, 0);
 	} // end Update()
 
@@ -39,7 +41,15 @@ public class BallScript : MonoBehaviour
 
 	void OnCollisionEnter(Collision col)
 	{
-		rigidbody.AddForce (300f, 300f, 0);
+		foreach (ContactPoint contact in col.contacts)
+		{
+			if (col.gameObject.name != "Paddle") 
+			{
+				float loc = col.gameObject.transform.position.y - contact.point.y;
+
+				this.rigidbody.AddForce(new Vector3(0, loc * bounciness, 0));
+			}
+		}
 	}
 
 } // end BallScript
