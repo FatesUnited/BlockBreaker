@@ -3,7 +3,6 @@ Breakout Clone v1.0
 Tom "Tribeman" Phillips
 [Fates United]
 
-Class to begin the game
 This was made for my UIC CS 426 - Video Game Design course.
 
 This game works with an XBOX 360 controller.
